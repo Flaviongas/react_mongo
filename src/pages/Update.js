@@ -8,7 +8,7 @@ async function request() {
   var select = Number(document.getElementsByName("option")[0].value);
   var data = document.getElementsByName('data')[0].value
   console.log(select)
-  let response = await fetch("http://127.0.0.1:8080/update", {
+  let response = await fetch("https://flavio02.matyplop.cl/rust/update", {
     method: "POST",
     body: JSON.stringify({ "ISBN": isbn, "option": select, "data": data })
 

@@ -6,7 +6,7 @@ async function help() {
   var year = Number(document.getElementsByName("year")[0].value);
   var editorial = document.getElementsByName("editorial")[0].value
   var price = Number(document.getElementsByName("price")[0].value);
-  let response = await fetch("http://127.0.0.1:8080/insert", {
+  let response = await fetch("https://flavio02.matyplop.cl/rust/insert", {
     method: "POST",
     body: JSON.stringify({ "ISBN": ISBN, "title": title, "author": author, "year": year, "editorial": editorial, "price": price })
 

@@ -6,7 +6,7 @@ function App() {
   return (
     <>
       <Navbar></Navbar>
-      <p>Descripción</p>
+      <p>Bienvenido, selecciona una opción arriba</p>
     </>
   );
 }

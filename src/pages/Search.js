@@ -5,7 +5,7 @@ async function request() {
   div.innerHTML = ""
   var select = Number(document.getElementsByName("search")[0].value);
   var body = document.getElementById('lname').value
-  let response = await fetch("http://127.0.0.1:8080/search", {
+  let response = await fetch("https://flavio02.matyplop.cl/rust/search", {
     method: "POST",
     body: JSON.stringify({ "option": select, "data": body })
 

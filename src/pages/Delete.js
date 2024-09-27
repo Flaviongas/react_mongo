@@ -6,7 +6,7 @@ async function request() {
   var body = document.getElementById('lname').value
   if (select != null) {
 
-    let response = await fetch("http://127.0.0.1:8080/delete", {
+    let response = await fetch("https://flavio02.matyplop.cl/rust/search", {
       method: "POST",
       body: JSON.stringify({ "option": select, "data": body })
 
