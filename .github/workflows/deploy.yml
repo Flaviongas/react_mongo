@@ -32,11 +32,11 @@ jobs:
         run: "npm install"
 
       - name: Build step
-        run: "npm run build"
+        run: "unset CI && npm run build"
 
       - name: Upload to Deno Deploy
         uses: denoland/deployctl@v1
         with:
-          project: "flaviongas-react-mongo-67"
+          project: "flaviongas-react-mongo-89"
           entrypoint: "https://deno.land/std@0.217.0/http/file_server.ts"
           root: "build"
