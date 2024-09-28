@@ -5,6 +5,12 @@ button:focus {
   outline: none;
 }
 
+table {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 button {
   background-color: #ff4f63 !important;
 }
@@ -15,7 +21,7 @@ button:hover {
 
 select {
   background-color: #ff6173 !important;
-  color: white;
+  color: white !important;
   border: 4px solid #ff6173;
   border-radius: 50px;
   text-align: center;

@@ -1,5 +1,46 @@
 import './ui.css'
 import Navbar from '../Navbar';
+var _table_ = document.createElement('table'),
+  _tr_ = document.createElement('tr'),
+  _th_ = document.createElement('th'),
+  _td_ = document.createElement('td');
+
+// Builds the HTML Table out of myList json data from Ivy restful service.
+function buildHtmlTable(arr) {
+  var table = _table_.cloneNode(false),
+    columns = addAllColumnHeaders(arr, table);
+  for (var i = 0, maxi = arr.length; i < maxi; ++i) {
+    var tr = _tr_.cloneNode(false);
+    for (var j = 0, maxj = columns.length; j < maxj; ++j) {
+      var td = _td_.cloneNode(false);
+      var cellValue = arr[i][columns[j]];
+      td.appendChild(document.createTextNode(arr[i][columns[j]] || ''));
+      tr.appendChild(td);
+    }
+    table.appendChild(tr);
+  }
+  return table;
+}
+
+// Adds a header row to the table and returns the set of columns.
+// Need to do union of keys from all records as some records may not contain
+// all records
+function addAllColumnHeaders(arr, table) {
+  var columnSet = [],
+    tr = _tr_.cloneNode(false);
+  for (var i = 0, l = arr.length; i < l; i++) {
+    for (var key in arr[i]) {
+      if (arr[i].hasOwnProperty(key) && columnSet.indexOf(key) === -1) {
+        columnSet.push(key);
+        var th = _th_.cloneNode(false);
+        th.appendChild(document.createTextNode(key));
+        tr.appendChild(th);
+      }
+    }
+  }
+  table.appendChild(tr);
+  return columnSet;
+}
 async function request() {
   var div = document.getElementById("result")
   div.innerHTML = ""
@@ -18,73 +59,38 @@ async function request() {
     div.style.margin = "15px"
   }
   else if (select === 3) {
-    for (const key in json) {
-      console.log();
-      var para = document.createElement("p");
-      para.style.textAlign = "center"
-      var isbn = document.createTextNode(`ISBN: ${json[key].ISBN}`)
-      var titulo = document.createTextNode(`
-      Titulo: ${json[key].title}
-`)
-      var autor = document.createTextNode(`
-Autor: ${json[key].author}
-`)
-      var edit = document.createTextNode(`
-Editorial: ${json[key].editorial}
-`)
-      var precio = document.createTextNode(`
-Precio: ${json[key].price}
-`)
-      var precioo = document.createTextNode(`
-Año: ${json[key].year}
-`);
-      para.appendChild(isbn);
-      para.appendChild(document.createElement('br'));
-      para.appendChild(titulo);
-      para.appendChild(document.createElement('br'));
-      para.appendChild(autor);
-      para.appendChild(document.createElement('br'));
-      para.appendChild(edit);
-      para.appendChild(document.createElement('br'));
-      para.appendChild(precio);
-      para.appendChild(document.createElement('br'));
-      para.appendChild(precioo);
-      para.appendChild(document.createElement('br'));
-      div.appendChild(para);
-      div.appendChild(document.createElement('br'));
-    }
-  } else {
-    var para = document.createElement("p");
-    para.style.textAlign = "center"
-    var isbn = document.createTextNode(`ISBN: ${json.ISBN}`)
-    var titulo = document.createTextNode(`
-      Titulo: ${json.title}
-`)
-    var autor = document.createTextNode(`
-Autor: ${json.author}
-`)
-    var edit = document.createTextNode(`
-Editorial: ${json.editorial}
-`)
-    var precio = document.createTextNode(`
-Precio: ${json.price}
-`)
-    var precioo = document.createTextNode(`
-Año: ${json.year}
-`);
-    para.appendChild(isbn);
-    para.appendChild(document.createElement('br'));
-    para.appendChild(titulo);
-    para.appendChild(document.createElement('br'));
-    para.appendChild(autor);
-    para.appendChild(document.createElement('br'));
-    para.appendChild(edit);
-    para.appendChild(document.createElement('br'));
-    para.appendChild(precio);
-    para.appendChild(document.createElement('br'));
-    para.appendChild(precioo);
-    para.appendChild(document.createElement('br'));
-    div.appendChild(para);
+
+    Array.prototype.forEach.call(json, function(it) {
+      if (it.hasOwnProperty("title")) {
+        it["Titulo"] = it.title;
+        delete it["title"]
+      }
+    });
+    Array.prototype.forEach.call(json, function(it) {
+      if (it.hasOwnProperty("author")) {
+        it["Autor"] = it.author;
+        delete it["author"]
+      }
+    });
+    Array.prototype.forEach.call(json, function(it) {
+      if (it.hasOwnProperty("year")) {
+        it["Año"] = it.year;
+        delete it["year"]
+      }
+    });
+    Array.prototype.forEach.call(json, function(it) {
+      if (it.hasOwnProperty("editorial")) {
+        it["Editorial"] = it.editorial;
+        delete it["editorial"]
+      }
+    });
+    Array.prototype.forEach.call(json, function(it) {
+      if (it.hasOwnProperty("price")) {
+        it["Precio"] = it.price;
+        delete it["price"]
+      }
+    });
+    div.appendChild(buildHtmlTable(json));
 
   }
 
@@ -102,8 +108,8 @@ export default function Search() {
         </select>
         <input type="text" id="lname" name="lname" placeholder='Ingresa el parametro de busqueda' className="g-gray-50 border border-gray-300 text-gray-900 text-sm rounded-2xl focus:ring-pink-500 focus:border-pink-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-pink-500 dark:focus:border-pink-500 mb-5" />
         <button type="submit" value="Submit" className="text-white   focus:ring-4 focus:outline-none  font-medium rounded-2xl text-sm w-full sm:w-auto px-5 py-2.5 text-center " onClick={request}>Buscar libro</button>
-        <div id='result'></div>
       </div>
+      <div id='result' className='w-3/4 mx-auto text-center'></div>
     </>
   );
 }
