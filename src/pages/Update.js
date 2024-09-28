@@ -35,7 +35,7 @@ export default function Update() {
           <option value="6">Modificar precio</option>
         </select>
         <input type="text" id="lname" name="data" placeholder='Ingrese el dato nuevo' className='g-gray-50 border border-gray-300 text-gray-900 text-sm rounded-2xl focus:ring-pink-500 focus:border-pink-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-pink-500 dark:focus:border-pink-500 mb-5' />
-        <button type="submit" value="Submit" className="text-white   focus:ring-4 focus:outline-none  font-medium rounded-2xl text-sm w-full sm:w-auto px-5 py-2.5 text-center " onClick={request}>Buscar</button>
+        <button type="submit" value="Submit" className="text-white   focus:ring-4 focus:outline-none  font-medium rounded-2xl text-sm w-full sm:w-auto px-5 py-2.5 text-center " onClick={request}>Modificar libro</button>
         <p id='result'></p>
       </div>
     </>
