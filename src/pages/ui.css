@@ -1,0 +1,31 @@
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+  outline: none;
+}
+
+button {
+  background-color: #ff4f63 !important;
+}
+
+button:hover {
+  background-color: #ef364e !important;
+}
+
+select {
+  background-color: #ff6173 !important;
+  color: white;
+  border: 4px solid #ff6173;
+  border-radius: 50px;
+  text-align: center;
+  margin-top: 10px !important;
+  margin-bottom: 10px !important;
+}
+
+input {
+  text-align: center;
+  margin-top: 10px !important;
+  margin-bottom: 10px !important;
+  color: #666666;
+}
