@@ -58,6 +58,29 @@ async function request() {
     div.style.textAlign = "center"
     div.style.margin = "15px"
   }
+  else if (select === 1 || select === 2) {
+    let ISBN = document.createElement("p");
+    let title = document.createElement("p");
+    let author = document.createElement("p");
+    let year = document.createElement("p");
+    let editorial = document.createElement("p");
+    let price = document.createElement("p");
+    ISBN.innerHTML = "<b>ISBN: </b>" + json.ISBN
+    title.innerHTML = "<b>Título: </b>" + json.title
+    author.innerHTML = "<b>Autor: </b>" + json.author
+    year.innerHTML = "<b>Año: </b>" + json.year
+    editorial.innerHTML = "<b>Editorial: </b>" + json.editorial
+    price.innerHTML = "<b>Precio: </b>" + json.price
+    div.appendChild(ISBN)
+    div.appendChild(title)
+    div.appendChild(author)
+    div.appendChild(year)
+    div.appendChild(editorial)
+    div.appendChild(price)
+    div.style.textAlign = "center"
+    div.style.marginLeft = "auto"
+    div.style.marginRight = "auto"
+  }
   else if (select === 3) {
 
     Array.prototype.forEach.call(json, function(it) {
