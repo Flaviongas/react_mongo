@@ -5,7 +5,6 @@ var _table_ = document.createElement('table'),
   _th_ = document.createElement('th'),
   _td_ = document.createElement('td');
 
-// Builds the HTML Table out of myList json data from Ivy restful service.
 function buildHtmlTable(arr) {
   var table = _table_.cloneNode(false),
     columns = addAllColumnHeaders(arr, table);
@@ -22,9 +21,6 @@ function buildHtmlTable(arr) {
   return table;
 }
 
-// Adds a header row to the table and returns the set of columns.
-// Need to do union of keys from all records as some records may not contain
-// all records
 function addAllColumnHeaders(arr, table) {
   var columnSet = [],
     tr = _tr_.cloneNode(false);
@@ -58,30 +54,7 @@ async function request() {
     div.style.textAlign = "center"
     div.style.margin = "15px"
   }
-  else if (select === 1 || select === 2) {
-    let ISBN = document.createElement("p");
-    let title = document.createElement("p");
-    let author = document.createElement("p");
-    let year = document.createElement("p");
-    let editorial = document.createElement("p");
-    let price = document.createElement("p");
-    ISBN.innerHTML = "<b>ISBN: </b>" + json.ISBN
-    title.innerHTML = "<b>Título: </b>" + json.title
-    author.innerHTML = "<b>Autor: </b>" + json.author
-    year.innerHTML = "<b>Año: </b>" + json.year
-    editorial.innerHTML = "<b>Editorial: </b>" + json.editorial
-    price.innerHTML = "<b>Precio: </b>" + json.price
-    div.appendChild(ISBN)
-    div.appendChild(title)
-    div.appendChild(author)
-    div.appendChild(year)
-    div.appendChild(editorial)
-    div.appendChild(price)
-    div.style.textAlign = "center"
-    div.style.marginLeft = "auto"
-    div.style.marginRight = "auto"
-  }
-  else if (select === 3) {
+  else {
 
     Array.prototype.forEach.call(json, function(it) {
       if (it.hasOwnProperty("title")) {
