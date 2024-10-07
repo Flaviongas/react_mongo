@@ -49,7 +49,7 @@ async function request() {
   });
   let json = await response.json()
   console.log(json)
-  if (json == null) {
+  if (json.length === 0) {
     div.innerHTML = "Libro no encontrado"
     div.style.textAlign = "center"
     div.style.margin = "15px"
