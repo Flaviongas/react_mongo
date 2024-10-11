@@ -7,19 +7,26 @@ async function request() {
     document.getElementById("update").disabled = false;
   }, 2000);
   var isbn = Number(document.getElementsByName('isbn')[0].value)
-  var select = Number(document.getElementsByName("option")[0].value);
-  var data = document.getElementsByName('data')[0].value
-  console.log(select)
-  let response = await fetch("https://flavio02.matyplop.cl/rust/update", {
-    method: "POST",
-    body: JSON.stringify({ "ISBN": isbn, "option": select, "data": data })
-
-  });
-  let answer = await response.text()
-  console.log(answer)
+  console.log(isbn)
+  console.log(isbn.length)
   var p = document.getElementById("result")
-  p.innerText = answer
+  if (isbn.length !== undefined || !isNaN(isbn)) {
+    console.log("Hi")
+    var select = Number(document.getElementsByName("option")[0].value);
+    var data = document.getElementsByName('data')[0].value
+    let response = await fetch("https://flavio02.matyplop.cl/rust/update", {
+      method: "POST",
+      body: JSON.stringify({ "ISBN": isbn, "option": select, "data": data })
 
+    });
+    let answer = await response.text()
+    console.log(answer)
+    p.innerText = answer
+
+  } else {
+
+    p.innerText = "ISBN no es un número"
+  }
 }
 export default function Update() {
   return (

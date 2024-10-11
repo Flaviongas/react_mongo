@@ -51,12 +51,15 @@ async function request() {
     body: JSON.stringify({ "option": select, "data": body })
 
   });
-  let json = await response.json()
-  console.log(json)
-  if (json.length === 0) {
-    div.innerHTML = "Libro no encontrado"
-    div.style.textAlign = "center"
-    div.style.margin = "15px"
+  try {
+
+    var json = await response.json()
+  } catch {
+
+    var json = []
+  }
+  if (json.length === 0 || typeof json == 'undefined') {
+    div.innerHTML = "<b>Libro no encontrado</b>"
   }
   else {
 

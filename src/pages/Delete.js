@@ -9,7 +9,8 @@ async function request() {
   }, 2000);
   var select = Number(document.getElementsByName("delete")[0].value);
   var body = document.getElementById('lname').value
-  if (select != null) {
+  var p = document.getElementById("result")
+  if (select != null && body !== '') {
 
     let response = await fetch("https://flavio02.matyplop.cl/rust/delete", {
       method: "POST",
@@ -18,13 +19,11 @@ async function request() {
     });
     let answer = await response.text()
     console.log(answer)
-    var p = document.getElementById("result")
     p.innerText = answer
   } else {
-    p.innerText = "Libro no encontrado"
+    p.innerText = "Ingrese un dato"
 
   }
-  //localhost:8080/search -d '{ "option": 3, "data": "a" }'
 
 }
 export default function Delete() {
