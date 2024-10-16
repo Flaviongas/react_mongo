@@ -1,8 +1,8 @@
-body {
+html {
   background-image: url("https://e0.pxfuel.com/wallpapers/609/931/desktop-wallpaper-white-and-gold-marble-gold-marble-phone.jpg");
   background-size: cover;
   background-position: center;
-  background-repeat: repeat-y;
+  background-repeat: no-repeat;
   height: 100%;
 }
 
