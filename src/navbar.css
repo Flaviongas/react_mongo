@@ -6,3 +6,10 @@ nav {
   color: white;
   background: linear-gradient(-0.35turn, #ff216c, #ff6179);
 }
+
+li:hover,
+a:hover {
+  /*// TODO: Make pretty effect:*/
+  background-color: #0000 !important;
+  color: black !important;
+}

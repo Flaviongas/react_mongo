@@ -3,7 +3,12 @@ body {
   background-size: cover;
   background-position: center;
   background-repeat: repeat-y;
-  height: 100%;
+  background-attachment: fixed;
+}
+
+button:hover {
+  background-color: #0000 !important;
+  color: black !important;
 }
 
 input:focus,
