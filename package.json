@@ -38,5 +38,9 @@
   },
   "devDependencies": {
     "tailwindcss": "^3.4.13"
-  }
-}
+  },
+"devServer": {
+   "historyApiFallback": true,
+   "contentBase": "./",
+   "hot": true
+}}
