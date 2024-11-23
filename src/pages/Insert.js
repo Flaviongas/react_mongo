@@ -11,8 +11,11 @@ async function request() {
   var year = Number(document.getElementsByName("year")[0].value);
   var editorial = document.getElementsByName("editorial")[0].value
   var price = Number(String(document.getElementsByName("price")[0].value).replace('.', ''));
-  let response = await fetch("https://flavio02.matyplop.cl/rust/insert", {
+  let response = await fetch(" http://localhost:8000/api/insert", {
     method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
     body: JSON.stringify({ "ISBN": ISBN, "title": title, "author": author, "year": year, "editorial": editorial, "price": price })
 
   });

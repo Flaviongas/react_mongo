@@ -12,8 +12,11 @@ async function request() {
   var p = document.getElementById("result")
   if (select != null && body !== '') {
 
-    let response = await fetch("https://flavio02.matyplop.cl/rust/delete", {
+    let response = await fetch(" http://localhost:8000/api/delete", {
       method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
       body: JSON.stringify({ "option": select, "data": body })
 
     });

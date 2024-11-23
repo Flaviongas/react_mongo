@@ -69,6 +69,11 @@ async function request() {
   else {
     console.log(json)
     Array.prototype.forEach.call(json, function(it) {
+      if (it.hasOwnProperty("created_at")) {
+        delete it["created_at"]
+      }
+    });
+    Array.prototype.forEach.call(json, function(it) {
       if (it.hasOwnProperty("updated_at")) {
         delete it["updated_at"]
       }
