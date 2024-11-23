@@ -46,8 +46,12 @@ async function request() {
   div.innerHTML = ""
   var select = Number(document.getElementsByName("search")[0].value);
   var body = document.getElementById('lname').value
-  let response = await fetch("https://flavio02.matyplop.cl/rust/search", {
+  console.log(select)
+  let response = await fetch("http://localhost:8000/api/search", {
     method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
     body: JSON.stringify({ "option": select, "data": body })
 
   });
@@ -59,10 +63,21 @@ async function request() {
     var json = []
   }
   if (json.length === 0 || typeof json == 'undefined') {
+    console.log(json)
     div.innerHTML = "<b>Libro no encontrado</b>"
   }
   else {
-
+    console.log(json)
+    Array.prototype.forEach.call(json, function(it) {
+      if (it.hasOwnProperty("updated_at")) {
+        delete it["updated_at"]
+      }
+    });
+    Array.prototype.forEach.call(json, function(it) {
+      if (it.hasOwnProperty("id")) {
+        delete it["id"]
+      }
+    });
     Array.prototype.forEach.call(json, function(it) {
       if (it.hasOwnProperty("title")) {
         it["Titulo"] = it.title;
