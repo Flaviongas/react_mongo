@@ -55,7 +55,7 @@ export default function Insert() {
     <>
       <Navbar />
       <div className="w-1/2 mx-auto flex flex-col m-5">
-        {["ISBN", "Título", "Autor", "Año", "Editorial", "Precio"].map((field) => (
+        {["ISBN", "title", "author", "year", "editorial", "price"].map((field) => (
           <div key={field} className="mb-4">
             <label
               htmlFor={field}
@@ -92,5 +92,4 @@ export default function Insert() {
     </>
   );
 }
-
 
