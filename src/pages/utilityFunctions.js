@@ -1,5 +1,5 @@
 export function buildHtmlTable(data) {
-  const headers = ['Titulo', 'Autor', 'Año', 'Editorial', 'Precio'];
+  const headers = ['ISBN', 'Titulo', 'Autor', 'Año', 'Editorial', 'Precio'];
 
   return (
     <table className="table-auto w-full">
@@ -13,6 +13,7 @@ export function buildHtmlTable(data) {
       <tbody>
         {data.map((row, index) => (
           <tr key={index}>
+            <td className="px-4 py-2 border">{row.ISBN}</td>
             <td className="px-4 py-2 border">{row.Titulo}</td>
             <td className="px-4 py-2 border">{row.Autor}</td>
             <td className="px-4 py-2 border">{row.Año}</td>

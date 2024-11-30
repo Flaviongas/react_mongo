@@ -27,7 +27,6 @@ async function request(select, body, setResponse, setLoading) {
       "price": "Precio"
     };
 
-    // Clean up the JSON response
     json.forEach(it => {
       ["created_at", "updated_at", "id"].forEach(prop => {
         if (Object.hasOwn(it, prop)) {
@@ -44,7 +43,6 @@ async function request(select, body, setResponse, setLoading) {
     });
 
     setResponse(buildHtmlTable(json));
-    //setResponse("xd");
   }
 
   setLoading(false);
