@@ -11,7 +11,7 @@ async function request() {
   var year = Number(document.getElementsByName("year")[0].value);
   var editorial = document.getElementsByName("editorial")[0].value
   var price = Number(String(document.getElementsByName("price")[0].value).replace('.', ''));
-  let response = await fetch(" http://localhost:8000/api/insert", {
+  let response = await fetch("https://fair-kathy-flaviongas-08b2eb54.koyeb.app/api/insert", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -20,7 +20,6 @@ async function request() {
 
   });
   let answer = await response.text()
-  console.log(answer)
   var p = document.getElementById("result")
   p.innerText = answer
   //ISBN: u64,

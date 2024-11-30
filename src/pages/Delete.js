@@ -12,7 +12,7 @@ async function request() {
   var p = document.getElementById("result")
   if (select != null && body !== '') {
 
-    let response = await fetch(" http://localhost:8000/api/delete", {
+    let response = await fetch("https://fair-kathy-flaviongas-08b2eb54.koyeb.app/api/delete", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

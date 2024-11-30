@@ -46,8 +46,7 @@ async function request() {
   div.innerHTML = ""
   var select = Number(document.getElementsByName("search")[0].value);
   var body = document.getElementById('lname').value
-  console.log(select)
-  let response = await fetch("http://localhost:8000/api/search", {
+  let response = await fetch("https://fair-kathy-flaviongas-08b2eb54.koyeb.app/api/search", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -63,11 +62,9 @@ async function request() {
     var json = []
   }
   if (json.length === 0 || typeof json == 'undefined') {
-    console.log(json)
     div.innerHTML = "<b>Libro no encontrado</b>"
   }
   else {
-    console.log(json)
     Array.prototype.forEach.call(json, function(it) {
       if (it.hasOwnProperty("created_at")) {
         delete it["created_at"]
