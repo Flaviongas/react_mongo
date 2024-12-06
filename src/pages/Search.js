@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import './ui.css';
 import Navbar from '../Navbar';
 import { buildHtmlTable } from './utilityFunctions';
@@ -53,6 +53,19 @@ export default function Search() {
   const [loading, setLoading] = useState(false);
   const [select, setSelect] = useState(1);
   const [searchTerm, setSearchTerm] = useState("");
+  const [isHidden, setIsHidden] = useState(false);
+
+  useEffect(() => {
+    if (select === 3) {
+      //add
+      setIsHidden(true)
+      console.log("TRUE")
+    } else {
+
+      console.log("FALSE")
+      setIsHidden(false)
+    }
+  }, [select]);
 
   const handleSearch = () => {
     request(select, searchTerm, setResponse, setLoading);
@@ -76,6 +89,8 @@ export default function Search() {
           type="text"
           id="lname"
           name="lname"
+
+          style={{ display: isHidden ? 'none' : 'block' }}
           placeholder='Ingresa el parametro de busqueda'
           className="g-gray-50 border border-gray-300 text-gray-900 text-sm rounded-2xl focus:ring-pink-500 focus:border-pink-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-pink-500 dark:focus:border-pink-500 mb-5"
           value={searchTerm}

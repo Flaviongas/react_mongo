@@ -64,17 +64,25 @@ export default function Insert() {
               {`Ingresa ${field}`}
             </label>
             <input
-              type="text"
+              type={field === "ISBN" || field === "Año" || field === "Precio" ? "number" : "text"}
               id={field}
               name={field}
               placeholder={`Ingresa ${field}`}
               value={formData[field]}
-              onChange={handleChange}
+              //onChange={handleChange}
+
+              onKeyDown={(e) => {
+                if (field === "ISBN" || field === "Año" || field === "Precio") {
+                  if (!/[0-9]|Backspace|Tab|Enter|Delete|ArrowLeft|ArrowRight/.test(e.key)) {
+                    e.preventDefault();
+                  }
+                }
+              }}
+
               className="g-gray-50 border border-gray-300 text-gray-900 text-sm rounded-2xl focus:ring-pink-500 focus:border-pink-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-pink-500 dark:focus:border-pink-500"
             />
           </div>
         ))}
-
         <button
           type="button"
           id="insert"
