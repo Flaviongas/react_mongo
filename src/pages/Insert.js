@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Navbar from "../Navbar";
 import "./ui.css";
 
@@ -38,14 +38,24 @@ export default function Insert() {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+    const mapping = {
+      "ISBN": "ISBN",
+      "Título": "title",
+      "Autor": "author",
+      "Año": "year",
+      "Editorial": "editorial",
+      "Precio": "price"
+    }
+    setFormData({ ...formData, [mapping[name]]: value });
   };
 
   const handleSubmit = async () => {
     const formattedData = {
-      ...formData,
       ISBN: Number(formData.ISBN),
+      title: formData.title,
+      author: formData.author,
       year: Number(formData.year),
+      editorial: formData.editorial,
       price: Number(String(formData.price).replace(".", "")),
     };
     await sendRequest(formattedData, setResponse, setDisabled);
@@ -69,7 +79,7 @@ export default function Insert() {
               name={field}
               placeholder={`Ingresa ${field}`}
               value={formData[field]}
-              //onChange={handleChange}
+              onChange={handleChange}
 
               onKeyDown={(e) => {
                 if (field === "ISBN" || field === "Año" || field === "Precio") {
